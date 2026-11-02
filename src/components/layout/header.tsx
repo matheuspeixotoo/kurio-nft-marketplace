@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
+import { useEffect, useState, type ComponentProps } from 'react'
+import { Link, createLink, useNavigate, useRouterState } from '@tanstack/react-router'
 import { Heart, Home, LogIn, LogOut, Search, ShoppingCart, User, Wallet, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/features/auth/auth-context'
@@ -12,12 +12,36 @@ import { ScanGlyph } from '@/components/icons'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/toast'
 
+/**
+ * Main navigation. Every item lives on the home page (single-page layout from Figma), so each one
+ * is identified by section anchor + catalog tab instead of by pathname.
+ */
 const NAV = [
-  { label: 'Início', to: '/', search: {} },
-  { label: 'Mercado', to: '/', search: { tab: 'all' as const } },
-  { label: 'Criadores', to: '/', search: { sort: 'trending' as const } },
-  { label: 'Aprenda', to: '/', hash: 'diario', search: {} },
-]
+  { label: 'Início', to: '/', search: {}, hash: undefined },
+  { label: 'Mercado', to: '/', search: {}, hash: 'catalogo' },
+  { label: 'Criadores', to: '/', search: { tab: 'trending' as const }, hash: 'catalogo' },
+  { label: 'Aprenda', to: '/', search: {}, hash: 'diario' },
+] as const
+
+type NavLabel = (typeof NAV)[number]['label']
+
+/**
+ * `Link` marks itself `aria-current="page"` by fuzzy matching (every item here resolves to `/`, so
+ * several would be "current" at once). The anchor below takes the decision from `activeNavItem` instead.
+ */
+function NavAnchor({ current, 'aria-current': _ariaCurrent, 'data-status': _status, ...props }: ComponentProps<'a'> & { current: boolean; 'data-status'?: string }) {
+  return <a {...props} aria-current={current ? 'page' : undefined} data-status={current ? 'active' : undefined} />
+}
+const NavLink = createLink(NavAnchor)
+
+/** Which nav item describes the current location (only one at a time). */
+function activeNavItem(pathname: string, hash: string, tab: string | undefined): NavLabel | null {
+  if (pathname !== '/') return null
+  if (hash === 'diario') return 'Aprenda'
+  if (tab === 'trending') return 'Criadores'
+  if (hash === 'catalogo') return 'Mercado'
+  return 'Início'
+}
 
 export function Logo({ className }: { className?: string }) {
   return (
@@ -199,28 +223,30 @@ function RealtimeDot() {
 }
 
 export function Header() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const current = useRouterState({
+    select: (s) => activeNavItem(s.location.pathname, s.location.hash, (s.location.search as { tab?: string }).tab),
+  })
   return (
     <header className="sticky top-0 z-30 bg-ink/95 backdrop-blur supports-[backdrop-filter]:bg-ink/85">
       <div className="container-page flex h-[72px] items-center justify-between gap-4 border-b border-border lg:h-[82px]">
         <Logo />
         <nav aria-label="Principal" className="hidden h-full items-stretch gap-10 lg:flex">
           {NAV.map((item) => {
-            const active = item.label === 'Início' ? pathname === '/' : false
+            const active = item.label === current
             return (
-              <Link
+              <NavLink
                 key={item.label}
                 to={item.to}
                 search={item.search}
                 hash={item.hash}
+                current={active}
                 className={cn(
                   'relative flex items-center text-[17px] text-foreground transition-colors hover:text-primary-light',
                   active && 'font-bold text-primary-light after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-primary',
                 )}
-                aria-current={active ? 'page' : undefined}
               >
                 {item.label}
-              </Link>
+              </NavLink>
             )
           })}
         </nav>

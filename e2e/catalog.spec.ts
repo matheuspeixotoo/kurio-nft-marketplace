@@ -98,3 +98,32 @@ test.describe('Catálogo: busca, filtros, ordenação, paginação e histórico'
     expect(names.length).toBe(9)
   })
 })
+
+test.describe('Navegação principal', () => {
+  test('apenas a aba da seção atual fica marcada', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'a navegação principal só existe no cabeçalho desktop')
+    await open(page, '/')
+    const nav = page.getByRole('navigation', { name: 'Principal' })
+    const current = () => nav.locator('a[aria-current="page"]')
+    await expect(current()).toHaveText('Início')
+
+    for (const [label, url] of [
+      ['Mercado', /\/#catalogo$/],
+      ['Criadores', /\?tab=trending#catalogo$/],
+      ['Aprenda', /\/#diario$/],
+      ['Início', /\/$/],
+    ] as const) {
+      await nav.getByRole('link', { name: label }).click()
+      await expect(page).toHaveURL(url)
+      await expect(current()).toHaveCount(1)
+      await expect(current()).toHaveText(label)
+    }
+
+    // "Em alta" no catálogo corresponde a Criadores; fora da home nenhuma aba fica marcada.
+    await page.getByRole('button', { name: 'Em alta' }).click()
+    await expect(current()).toHaveText('Criadores')
+    await page.getByTestId('cart-link').click()
+    await expect(page).toHaveURL(/\/cart$/)
+    await expect(current()).toHaveCount(0)
+  })
+})
