@@ -5,10 +5,13 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,9 +23,28 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - run: npx playwright install --with-deps chromium
+      # As baselines visuais dependem da renderização do sistema (fontes, antialiasing), por isso são
+      # versionadas por plataforma. Na primeira execução em Linux elas ainda não existem: o CI as gera,
+      # roda a suíte completa contra elas e, se tudo passar, versiona as imagens em main.
+      - name: Gera as baselines visuais do Linux (só quando ainda não existem)
+        id: baselines
+        if: hashFiles('e2e/__screenshots__/**/linux/**') == ''
+        run: |
+          npx playwright test e2e/visual.spec.ts --update-snapshots
+          echo "generated=true" >> "$GITHUB_OUTPUT"
+        env:
+          CI: 'true'
       - run: npm run test:e2e
         env:
           CI: 'true'
+      - name: Versiona as baselines geradas
+        if: steps.baselines.outputs.generated == 'true' && github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add e2e/__screenshots__
+          git commit -m "test(visual): baselines Linux geradas no CI"
+          git push
       - uses: actions/upload-artifact@v4
         if: always()
         with:

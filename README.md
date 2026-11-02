@@ -43,7 +43,7 @@ Comandos:
 | `npm run lint`                    | oxlint em `src`, `e2e` e `lighthouse`                                                  |
 | `npm run format` / `format:check` | Prettier                                                                               |
 | `npm run test:e2e`                | Playwright contra o build (`vite preview` é iniciado automaticamente)                  |
-| `npm run test:e2e:update`         | Regera as baselines de regressão visual                                                |
+| `npm run test:e2e:update`         | Regera as baselines de regressão visual (versionadas por plataforma: `win32`, `linux`) |
 | `npm run test:report`             | Abre o relatório HTML da última execução                                               |
 | `npm run lighthouse`              | Audita Início e Detalhe (mobile + desktop, 3 medições) e grava `lighthouse/RESULTS.md` |
 
