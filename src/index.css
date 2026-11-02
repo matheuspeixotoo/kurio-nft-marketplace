@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Roboto Mono — self-hosted via @fontsource (only the latin subset is referenced). */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('@fontsource/roboto-mono/files/roboto-mono-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('@fontsource/roboto-mono/files/roboto-mono-latin-700-normal.woff2') format('woff2');
+}
+
+@theme {
+  --font-sans: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Figma color styles (Marketplace de NFTs GreenMint) */
+  --color-ink: #140d0a; /* Color/Ink — page background */
+  --color-surface: #241612; /* Surface Card */
+  --color-surface-raised: #2f1d15; /* Surface Raised */
+  --color-surface-dark: #38220f; /* Surface Dark (footer band) */
+  --color-border: #3f2319; /* Border */
+  --color-border-soft: #55321f; /* Border Soft */
+  --color-primary: #d28a4c; /* Primary */
+  --color-primary-light: #e89b55; /* Primary Light / Amber */
+  --color-primary-dark: #b8733a; /* Primary Dark (hover) */
+  --color-foreground: #f5f1eb; /* Foreground */
+  --color-secondary: #cfb28c; /* Text/Secondary */
+  --color-accent: #b39463; /* Text/Accent (muted) */
+  --color-coral: #f0805f; /* Text/Coral (required marks, errors) */
+  --color-success: #00a66c;
+  --color-error: #e5484d;
+  --color-white: #fbfbfb;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  /* Fixed mobile bars (header, bottom nav, sticky buy bar): keep scrolled-into-view targets clear of them. */
+  @media (max-width: 1023px) {
+    html {
+      scroll-padding-top: 88px;
+      scroll-padding-bottom: 112px;
+    }
+  }
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    @apply bg-ink text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+  * {
+    border-color: var(--color-border);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-surface-raised;
+    background-image: linear-gradient(90deg, #2f1d15 0%, #3a251b 40%, #2f1d15 80%);
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+      background-image: none;
+    }
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 min-[1248px]:px-0;
+  }
+}

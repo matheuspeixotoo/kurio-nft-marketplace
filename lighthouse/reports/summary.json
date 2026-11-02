@@ -1,0 +1,317 @@
+{
+  "generatedAt": "2026-11-02T10:10:33.998Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "runs": 3,
+  "targets": {
+    "performance": 90,
+    "accessibility": 95,
+    "best-practices": 95,
+    "seo": 90
+  },
+  "environment": {
+    "chrome": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "benchmarkIndex": 2142,
+    "os": "Windows_NT 10.0.26300 (x64)",
+    "cpu": "Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz",
+    "cores": 12,
+    "memoryGb": 16,
+    "node": "v22.23.4",
+    "lighthouse": "13.6.0",
+    "app": "1.0.0",
+    "throttling": "Lighthouse defaults: mobile = simulated slow 4G + 4x CPU slowdown; desktop = simulated 10 Mbps, no CPU slowdown"
+  },
+  "results": [
+    {
+      "page": "Início",
+      "path": "/",
+      "profile": "Mobile",
+      "runs": [
+        {
+          "run": 1,
+          "scores": {
+            "performance": 74,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4599.256000000001,
+            "cls": 0.002065213447740552,
+            "tbt": 394.00000000000045,
+            "fcp": 810.6279999999999,
+            "si": 2255.1052661710337
+          },
+          "report": "lighthouse\\reports\\inicio-mobile-run1.html"
+        },
+        {
+          "run": 2,
+          "scores": {
+            "performance": 69,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4602.5718000000015,
+            "cls": 0,
+            "tbt": 382.00000000000045,
+            "fcp": 3106.42885,
+            "si": 3106.42885
+          },
+          "report": "lighthouse\\reports\\inicio-mobile-run2.html"
+        },
+        {
+          "run": 3,
+          "scores": {
+            "performance": 74,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4611.218799999999,
+            "cls": 0.0014126398593070177,
+            "tbt": 388.99999999999955,
+            "fcp": 818.6094,
+            "si": 2052.951306854215
+          },
+          "report": "lighthouse\\reports\\inicio-mobile-run3.html"
+        }
+      ],
+      "medians": {
+        "scores": {
+          "performance": 74,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 4602.5718000000015,
+          "cls": 0.0014126398593070177,
+          "tbt": 388.99999999999955,
+          "fcp": 818.6094,
+          "si": 2255.1052661710337
+        }
+      }
+    },
+    {
+      "page": "Início",
+      "path": "/",
+      "profile": "Desktop",
+      "runs": [
+        {
+          "run": 1,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1201.3392,
+            "cls": 0.002108114253922377,
+            "tbt": 0,
+            "fcp": 288.6696,
+            "si": 793.7583484302074
+          },
+          "report": "lighthouse\\reports\\inicio-desktop-run1.html"
+        },
+        {
+          "run": 2,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1205.021,
+            "cls": 0.002108114253922377,
+            "tbt": 0,
+            "fcp": 288.5105,
+            "si": 876.1455533649355
+          },
+          "report": "lighthouse\\reports\\inicio-desktop-run2.html"
+        },
+        {
+          "run": 3,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1203.4906,
+            "cls": 0.002108114253922377,
+            "tbt": 0,
+            "fcp": 288.7453,
+            "si": 635.8777621905101
+          },
+          "report": "lighthouse\\reports\\inicio-desktop-run3.html"
+        }
+      ],
+      "medians": {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 1203.4906,
+          "cls": 0.002108114253922377,
+          "tbt": 0,
+          "fcp": 288.6696,
+          "si": 793.7583484302074
+        }
+      }
+    },
+    {
+      "page": "Detalhes do NFT",
+      "path": "/nft/emerald-ape-042",
+      "profile": "Mobile",
+      "runs": [
+        {
+          "run": 1,
+          "scores": {
+            "performance": 77,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4502.157000000001,
+            "cls": 0.0001234055607371657,
+            "tbt": 323,
+            "fcp": 812.8628000000001,
+            "si": 1345.5643520108413
+          },
+          "report": "lighthouse\\reports\\detalhe-mobile-run1.html"
+        },
+        {
+          "run": 2,
+          "scores": {
+            "performance": 77,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4498.241249999999,
+            "cls": 0.0001234055607371657,
+            "tbt": 321,
+            "fcp": 810.4965,
+            "si": 1446.9818979471677
+          },
+          "report": "lighthouse\\reports\\detalhe-mobile-run2.html"
+        },
+        {
+          "run": 3,
+          "scores": {
+            "performance": 77,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 4501.253750000001,
+            "cls": 0.0001234055607371657,
+            "tbt": 324,
+            "fcp": 812.1015,
+            "si": 1373.5874460361956
+          },
+          "report": "lighthouse\\reports\\detalhe-mobile-run3.html"
+        }
+      ],
+      "medians": {
+        "scores": {
+          "performance": 77,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 4501.253750000001,
+          "cls": 0.0001234055607371657,
+          "tbt": 323,
+          "fcp": 812.1015,
+          "si": 1373.5874460361956
+        }
+      }
+    },
+    {
+      "page": "Detalhes do NFT",
+      "path": "/nft/emerald-ape-042",
+      "profile": "Desktop",
+      "runs": [
+        {
+          "run": 1,
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1090.2825,
+            "cls": 0.0003295413066919996,
+            "tbt": 0,
+            "fcp": 254.913,
+            "si": 454.56422023414854
+          },
+          "report": "lighthouse\\reports\\detalhe-desktop-run1.html"
+        },
+        {
+          "run": 2,
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1106.41,
+            "cls": 0.0003295413066919996,
+            "tbt": 0,
+            "fcp": 259.764,
+            "si": 540.2332519448621
+          },
+          "report": "lighthouse\\reports\\detalhe-desktop-run2.html"
+        },
+        {
+          "run": 3,
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "lcp": 1095.9087499999998,
+            "cls": 0.0003295413066919996,
+            "tbt": 0,
+            "fcp": 256.3635,
+            "si": 455.2023345539004
+          },
+          "report": "lighthouse\\reports\\detalhe-desktop-run3.html"
+        }
+      ],
+      "medians": {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "lcp": 1095.9087499999998,
+          "cls": 0.0003295413066919996,
+          "tbt": 0,
+          "fcp": 256.3635,
+          "si": 455.2023345539004
+        }
+      }
+    }
+  ]
+}
