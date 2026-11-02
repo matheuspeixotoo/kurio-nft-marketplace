@@ -2,7 +2,8 @@
 
 Implementação do [desafio frontend](https://github.com/junglegaming/frontend-challenge) a partir do [layout no Figma](https://www.figma.com/design/Ff0SksUi7UFtPWUO8kyNtw/Frontend-Challenge?node-id=0-1): fluxos de descoberta, compra e conta do colecionador, com APIs, autenticação, carteiras, pagamentos e tempo real **100% simulados no navegador** (MSW + Socket.IO), inclusive no build publicado.
 
-- **Demo:** _URL pública publicada na Vercel (ver seção Deploy)_
+- **Demo:** https://kurio-nft-marketplace-beryl.vercel.app
+- **Repositório:** https://github.com/matheuspeixotoo/kurio-nft-marketplace
 - **Documentação técnica:** [`ARCHITECTURE.md`](./ARCHITECTURE.md) (contratos REST e eventos, sessão, carrinho, cache, reconciliação REST ⇄ Socket.IO, decisões de UX e desvios do Figma)
 - **Auditoria Lighthouse:** [`lighthouse/RESULTS.md`](./lighthouse/RESULTS.md) (medianas) e [`lighthouse/ANALYSIS.md`](./lighthouse/ANALYSIS.md) (análise e causas)
 
@@ -138,7 +139,7 @@ npm run lighthouse:ci   # build + auditoria; relatórios em lighthouse/reports/,
 
 ## Deploy
 
-Build estático (`dist/`) com rewrite de SPA e cabeçalhos para o service worker (`vercel.json`). Na Vercel: _Import Project_ → framework **Vite** → sem variáveis obrigatórias. Os mocks e o tempo real funcionam no build publicado; acesso direto e refresh de qualquer rota funcionam via rewrite.
+Publicado em **https://kurio-nft-marketplace-beryl.vercel.app** (projeto `kurio-nft-marketplace` na Vercel, deploy via `npx vercel --prod`). Build estático (`dist/`) com rewrite de SPA e cabeçalhos para o service worker (`vercel.json`). Na Vercel: _Import Project_ → framework **Vite** → sem variáveis obrigatórias. Os mocks e o tempo real funcionam no build publicado; acesso direto e refresh de qualquer rota funcionam via rewrite.
 
 ## Estrutura
 

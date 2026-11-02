@@ -30,3 +30,6 @@ lighthouse/reports/*.html
 lighthouse/reports/*.json
 !lighthouse/reports/summary.json
 .env.local
+
+.vercel
+.env*
