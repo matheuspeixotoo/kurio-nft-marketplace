@@ -135,7 +135,7 @@ Cada teste parte de um contexto novo e chama `?reset=1&scenario=…`; relógio, 
 npm run lighthouse:ci   # build + auditoria; relatórios em lighthouse/reports/, resumo em lighthouse/RESULTS.md
 ```
 
-Última execução (medianas de 3 medições): desktop 97–98 / 100 / 100 / 100; mobile 74–77 / 100 / 100 / 100 (Performance / Accessibility / Best Practices / SEO). O LCP mobile fica em ~4,5 s no slow 4G simulado por causa do JavaScript inicial — sobretudo a camada de mocks (MSW + Socket.IO), obrigatória no build de demonstração. Detalhes e causas em [`lighthouse/ANALYSIS.md`](./lighthouse/ANALYSIS.md).
+Última execução (medianas de 3 medições): desktop 97 / 100 / 100 / 100; mobile 71–74 / 100 / 100 / 100 (Performance / Accessibility / Best Practices / SEO). O LCP mobile fica em ~4,5 s no slow 4G simulado por causa do JavaScript inicial — sobretudo a camada de mocks (MSW + Socket.IO), obrigatória no build de demonstração. Detalhes e causas em [`lighthouse/ANALYSIS.md`](./lighthouse/ANALYSIS.md).
 
 ## Deploy
 

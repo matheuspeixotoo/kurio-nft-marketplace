@@ -93,7 +93,7 @@ async function main() {
           const base = path.join(REPORTS, `${page.id}-${profile.id}-run${i}`)
           await writeFile(`${base}.html`, result.report[0])
           await writeFile(`${base}.json`, result.report[1])
-          runs.push({ run: i, scores, metrics, report: path.relative(ROOT, `${base}.html`) })
+          runs.push({ run: i, scores, metrics, report: path.relative(ROOT, `${base}.html`).split(path.sep).join('/') })
           summary.environment.chrome ??= lhr.environment.hostUserAgent
           summary.environment.benchmarkIndex ??= lhr.environment.benchmarkIndex
           console.log(
@@ -174,7 +174,7 @@ function renderMarkdown(s) {
   for (const [k, v] of Object.entries(s.environment)) lines.push(`- **${k}**: ${v}`)
   lines.push(
     '',
-    'Configuração versionada em `lighthouse/run.mjs` (perfis padrão do Lighthouse: `mobile` e `desktop-config`). Os relatórios HTML/JSON de cada medição ficam em `lighthouse/reports/` (gerados localmente; ignorados pelo git exceto `summary.json`).',
+    'Configuração versionada em `lighthouse/run.mjs` (perfis padrão do Lighthouse: `mobile` e `desktop-config`). Os relatórios HTML/JSON de cada medição estão versionados em `lighthouse/reports/` junto com o resumo `summary.json`.',
     '',
   )
   return lines.join('\n')

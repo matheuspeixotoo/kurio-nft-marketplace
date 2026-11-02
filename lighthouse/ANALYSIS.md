@@ -2,21 +2,21 @@
 
 Medianas de 3 medições (build otimizado, cenário padrão dos mocks, `lighthouse/run.mjs`). Os números exatos da última execução estão em [`RESULTS.md`](./RESULTS.md) e em `reports/summary.json`.
 
-| Página | Perfil | Performance | A11y | Best Practices | SEO | Meta atingida? |
-| --- | --- | ---: | ---: | ---: | ---: | --- |
-| Início | Desktop | 97 | 100 | 100 | 100 | ✅ |
-| Detalhes do NFT | Desktop | 98 | 100 | 100 | 100 | ✅ |
-| Início | Mobile | 74 | 100 | 100 | 100 | ⚠️ Performance abaixo de 90 |
-| Detalhes do NFT | Mobile | 77 | 100 | 100 | 100 | ⚠️ Performance abaixo de 90 |
+| Página          | Perfil  | Performance | A11y | Best Practices | SEO | Meta atingida?              |
+| --------------- | ------- | ----------: | ---: | -------------: | --: | --------------------------- |
+| Início          | Desktop |          97 |  100 |            100 | 100 | ✅                          |
+| Detalhes do NFT | Desktop |          97 |  100 |            100 | 100 | ✅                          |
+| Início          | Mobile  |          71 |  100 |            100 | 100 | ⚠️ Performance abaixo de 90 |
+| Detalhes do NFT | Mobile  |          74 |  100 |            100 | 100 | ⚠️ Performance abaixo de 90 |
 
 ## Core Web Vitals observados
 
-| Página / perfil | LCP | CLS | TBT |
-| --- | ---: | ---: | ---: |
-| Início / Mobile | ~4,6 s | 0,001 | ~390 ms |
-| Início / Desktop | ~1,2 s | 0,002 | 0 ms |
-| Detalhe / Mobile | ~4,5 s | 0,000 | ~320 ms |
-| Detalhe / Desktop | ~1,1 s | 0,000 | 0 ms |
+| Página / perfil   |    LCP |   CLS |     TBT |
+| ----------------- | -----: | ----: | ------: |
+| Início / Mobile   | ~4,7 s | 0,001 | ~428 ms |
+| Início / Desktop  | ~1,3 s | 0,002 |   18 ms |
+| Detalhe / Mobile  | ~4,6 s | 0,000 | ~408 ms |
+| Detalhe / Desktop | ~1,2 s | 0,000 |    3 ms |
 
 CLS e TBT estão dentro dos limiares "bons" (< 0,1 e < 200–600 ms) em todos os casos. O único indicador fora da meta é o **LCP no perfil mobile**.
 
@@ -24,14 +24,14 @@ CLS e TBT estão dentro dos limiares "bons" (< 0,1 e < 200–600 ms) em todos os
 
 O perfil mobile do Lighthouse simula **slow 4G (1,6 Mbps, 150 ms de RTT) com CPU 4× mais lenta**. Nessas condições o LCP é determinado quase inteiramente pelo tempo de download + parse/execução do JavaScript necessário antes da primeira renderização:
 
-| Chunk | Tamanho (gzip) | Por quê existe |
-| --- | ---: | --- |
-| `mocks` (MSW browser + interceptors + binding Socket.IO + fixtures) | ~166 kB | **Exigência do desafio**: a camada de mocks precisa estar no build de demonstração e inicia antes da primeira requisição (`worker.start()` precede o `render`). Num deploy com backend real este chunk não existiria. |
-| `vendor` (React DOM, TanStack Router/Query, Axios, decimal.js, Zod) | ~168 kB | Stack obrigatória. |
-| `ui` (Radix UI + ícones) | ~53 kB | Componentes shadcn/ui acessíveis. |
-| `index` + rotas | ~31 kB | Código da aplicação. |
+| Chunk                                                               | Tamanho (gzip) | Por quê existe                                                                                                                                                                                                        |
+| ------------------------------------------------------------------- | -------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mocks` (MSW browser + interceptors + binding Socket.IO + fixtures) |        ~166 kB | **Exigência do desafio**: a camada de mocks precisa estar no build de demonstração e inicia antes da primeira requisição (`worker.start()` precede o `render`). Num deploy com backend real este chunk não existiria. |
+| `vendor` (React DOM, TanStack Router/Query, Axios, decimal.js, Zod) |        ~168 kB | Stack obrigatória.                                                                                                                                                                                                    |
+| `ui` (Radix UI + ícones)                                            |         ~53 kB | Componentes shadcn/ui acessíveis.                                                                                                                                                                                     |
+| `index` + rotas                                                     |         ~31 kB | Código da aplicação.                                                                                                                                                                                                  |
 
-Em slow 4G, ~420 kB transferidos correspondem a ~2,1 s só de download, somados a ~1,7 s de *bootup* de JS com CPU 4× mais lenta (auditoria `bootup-time`). A imagem LCP (hero, WebP de 18 kB com `fetchpriority=high` e `preload`) chega bem antes, mas só é pintada quando o React monta.
+Em slow 4G, ~420 kB transferidos correspondem a ~2,1 s só de download, somados a ~1,7 s de _bootup_ de JS com CPU 4× mais lenta (auditoria `bootup-time`). A imagem LCP (hero, WebP de 18 kB com `fetchpriority=high` e `preload`) chega bem antes, mas só é pintada quando o React monta.
 
 ## O que já foi feito
 
