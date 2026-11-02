@@ -1,4 +1,5 @@
 import type { CategoryId, Edition, Network, NftDetail } from '@/types/api'
+import { NETWORK_LABELS } from '@/lib/networks'
 import { eth } from '@/lib/eth'
 
 /**
@@ -18,11 +19,6 @@ export const CATEGORY_LABELS: Record<CategoryId, string> = {
   utilidade: 'Utilidade',
 }
 
-export const NETWORK_LABELS: Record<Network, string> = {
-  ethereum: 'Ethereum',
-  polygon: 'Polygon',
-  solana: 'Solana',
-}
 
 type ImageKey = 'emerald' | 'sage' | 'ivory' | 'golden'
 

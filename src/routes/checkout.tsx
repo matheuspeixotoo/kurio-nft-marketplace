@@ -9,7 +9,7 @@ import { clearPendingOrder, readPendingOrder, useCreateOrder, useOrder, useOrder
 import { useProfile, useWallets } from '@/features/account/hooks'
 import { WalletPicker, type ConnectionState } from '@/features/checkout/wallet-connect'
 import { PROVIDER_LABELS } from './account.wallets'
-import { NETWORK_LABELS } from '@/mocks/fixtures/catalog'
+import { NETWORK_LABELS } from '@/lib/networks'
 import { formatDiscount, formatEth } from '@/lib/eth'
 import { toApiError } from '@/lib/api/errors'
 import { STORAGE_KEYS, readJson, writeJson } from '@/lib/storage'

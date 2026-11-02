@@ -4,7 +4,7 @@ import type { Network, Wallet, WalletProvider, WalletSlot, Wallets } from '@/typ
 import { toApiError } from '@/lib/api/errors'
 import { truncateMiddle } from '@/lib/utils'
 import { useProfile, useRemoveWallet, useSaveWallet, useWallets } from '@/features/account/hooks'
-import { NETWORK_LABELS } from '@/mocks/fixtures/catalog'
+import { NETWORK_LABELS } from '@/lib/networks'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { FormField } from '@/components/ui/form-field'

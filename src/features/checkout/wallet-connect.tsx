@@ -5,7 +5,7 @@ import type { Network, Wallet, WalletConnection, WalletProvider, Wallets } from 
 import { api } from '@/lib/api/endpoints'
 import { toApiError } from '@/lib/api/errors'
 import { cn, truncateMiddle } from '@/lib/utils'
-import { NETWORK_LABELS } from '@/mocks/fixtures/catalog'
+import { NETWORK_LABELS } from '@/lib/networks'
 import { Button } from '@/components/ui/button'
 import { WalletGlyph } from '@/components/icons'
 import { useAnnounce } from '@/components/live-announcer'
